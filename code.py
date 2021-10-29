@@ -8,10 +8,7 @@ import streamlit as st
 import joblib
 
 from PIL import Image
-header=st.beta_container()
-load=st.beta_container()
-final=st.beta_container()
-with header:
+def main():
     CONSUMER_KEY = st.text_input('consumer key')
     CONSUMER_SECRET = st.text_input('consumer secret')
     OAUTH_TOKEN = st.text_input('oauth token')
@@ -23,11 +20,11 @@ with header:
     api= tweepy.API(auth,wait_on_rate_limit=True)
     posts= api.user_timeline(screen_name=username,count=n,tweet_mode='extended')
     st.success('logged in')
-with load:
     m=st.number_input('number',1,2000)
     i=1
     if st.button('n recent tweets'):
          for tweet in posts[0:m]:
             print(str(i)+')' + tweet.full_text+'\n')
             i=i+1
- 
+ if __name__ == '__main__':
+    main()
