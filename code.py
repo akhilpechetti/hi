@@ -10,7 +10,6 @@ import joblib
 from PIL import Image
 
 def main():
-    global posts
     CONSUMER_KEY = st.text_input('consumer key')
     CONSUMER_SECRET = st.text_input('consumer secret')
     OAUTH_TOKEN = st.text_input('oauth token')
@@ -18,6 +17,7 @@ def main():
     username = st.text_input('username want to check')
     n=st.number_input('how many tweets',1,2000)
     if st.button('login'):
+        global posts
         auth = tweepy.OAuthHandler(CONSUMER_KEY,CONSUMER_SECRET)
         auth.set_access_token(OAUTH_TOKEN,OAUTH_TOKEN_SECRET)
         api= tweepy.API(auth,wait_on_rate_limit=True)
