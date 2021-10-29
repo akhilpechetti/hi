@@ -45,7 +45,7 @@ if __name__ == '__main__':
     auth.set_access_token(OAUTH_TOKEN,OAUTH_TOKEN_SECRET)
     api= tweepy.API(auth,wait_on_rate_limit=True)
     tweets=[]
-    for i in tweepy.Cursor(api.user_timeline,id=PMOindia).items(3):
+    for i in tweepy.Cursor(api.user_timeline,id='PMOindia').items(3):
         tweets.append(i.text)
     str.success(tweets)
     #cursor=tweepy.Cursor(api.user_timeline,id=user).items(10)
