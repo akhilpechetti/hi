@@ -26,7 +26,7 @@ def main():
         st.button('n recent tweets'):
             m=st.number_input('number',1,2000)
             i=1
-            for tweet in posts[0:m]:
+            for tweet in posts[0:m]
                 print(str(i)+')' + tweet.full_text+'\n')
                 i=i+1
 if __name__ == '__main__':
