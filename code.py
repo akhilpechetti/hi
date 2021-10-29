@@ -24,9 +24,9 @@ with header:
     posts= api.user_timeline(screen_name=username,count=n,tweet_mode='extended')
     st.success('logged in')
 with load:
-     if st.button('n recent tweets'):
-         m=st.number_input('number',1,2000)
-         i=1
+    m=st.number_input('number',1,2000)
+    i=1
+    if st.button('n recent tweets'):
          for tweet in posts[0:m]:
             print(str(i)+')' + tweet.full_text+'\n')
             i=i+1
