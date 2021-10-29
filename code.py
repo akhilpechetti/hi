@@ -25,5 +25,5 @@ def main():
         for tweet in posts[0:m]:
             print(str(i)+')' + tweet.full_text+'\n')
             i=i+1
- if __name__ == '__main__':
+if __name__ == '__main__':
     main()
