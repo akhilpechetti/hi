@@ -10,6 +10,7 @@ import joblib
 from PIL import Image
 
 def main():
+    global posts
     CONSUMER_KEY = st.text_input('consumer key')
     CONSUMER_SECRET = st.text_input('consumer secret')
     OAUTH_TOKEN = st.text_input('oauth token')
