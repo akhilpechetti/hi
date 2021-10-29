@@ -6,11 +6,15 @@ import tweepy
 #from flasgger import Swagger
 import streamlit as st
 import joblib
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+analyzer = SentimentIntensityAnalyzer()
 
 from PIL import Image
 def main():
     tweet=st.text_input('tweet')
-    
+    vs = analyzer.polarity_scores(tweet)
+    print("{}… {}".format(s1[:30], str(vs)))
+
 def main1():
     CONSUMER_KEY = st.text_input('consumer key')
     CONSUMER_SECRET = st.text_input('sec')
