@@ -17,10 +17,10 @@ def main1():
         st.write("{}… {}".format(tweet[:30], str(vs)))
 
 def main():
-    CONSUMER_KEY = st.text_input('consumer key')
-    CONSUMER_SECRET = st.text_input('sec')
-    OAUTH_TOKEN = st.text_input('ctok')
-    OAUTH_TOKEN_SECRET = st.text_input('tok sec')
+    CONSUMER_KEY = st.text_area('consumer key')
+    CONSUMER_SECRET = st.text_area('sec')
+    OAUTH_TOKEN = st.text_area('ctok')
+    OAUTH_TOKEN_SECRET = st.text_area('tok sec')
     username = st.text_input('username want to check')
     n=st.number_input('how many tweets',1,2000)
     if st.button('login'):
