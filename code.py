@@ -47,6 +47,6 @@ if __name__ == '__main__':
     tweets=[]
     for i in tweepy.Cursor(api.user_timeline,id='PMOindia').items(3):
         tweets.append(i.text)
-    str.success(tweets)
+    print(tweets)
     #cursor=tweepy.Cursor(api.user_timeline,id=user).items(10)
     #main()
