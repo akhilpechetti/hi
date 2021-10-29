@@ -11,9 +11,9 @@ from PIL import Image
 
 def main():
     CONSUMER_KEY = st.text_input('consumer key')
-    CONSUMER_SECRET = st.text_input('consumer kry')
-    OAUTH_TOKEN = st.text_input('consumer kry')
-    OAUTH_TOKEN_SECRET = st.text_input('consumer kry')
+    CONSUMER_SECRET = st.text_input('consumer secret')
+    OAUTH_TOKEN = st.text_input('oauth token')
+    OAUTH_TOKEN_SECRET = st.text_input('oauth token secret')
     username = st.text_input('username want to check')
     n=st.number_input('how many tweets',1,2000)
     auth = tweepy.OAuthHandler(CONSUMER_KEY,CONSUMER_SECRET)
