@@ -20,6 +20,6 @@ def main():
         auth.set_access_token(OAUTH_TOKEN,OAUTH_TOKEN_SECRET)
         api= tweepy.API(auth,wait_on_rate_limit=True)
         posts= api.user_timeline(screen_name='username',count=n,lang='en',tweet_mode='extended')
-        print(posts[0:2]
+        print(posts[0:2])
 if __name__ == '__main__':
         main()
