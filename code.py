@@ -14,7 +14,7 @@ def main():
     tweet=st.text_input('tweet')
     if st.button('1'):
         vs = analyzer.polarity_scores(tweet)
-        print("{}… {}".format(tweet[:30], str(vs)))
+        st.success("{}… {}".format(tweet[:30], str(vs)))
 
 def main1():
     CONSUMER_KEY = st.text_input('consumer key')
