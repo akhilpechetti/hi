@@ -32,5 +32,4 @@ with load:
             print(str(i)+')' + tweet.full_text+'\n')
             i=i+1
 if __name__ == '__main__':
-    main()
  
