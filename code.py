@@ -9,6 +9,9 @@ import joblib
 
 from PIL import Image
 def main():
+    tweet=st.text_input('tweet')
+    
+def main1():
     CONSUMER_KEY = st.text_input('consumer key')
     CONSUMER_SECRET = st.text_input('sec')
     OAUTH_TOKEN = st.text_input('ctok')
