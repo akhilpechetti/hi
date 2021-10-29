@@ -31,7 +31,7 @@ def main():
     n=st.number_input('how many tweets',1,2000)
     if st.button('login'):
         tweets=[]
-        for i in tweepy.Cursor(client.user_timeline,id=user).items(n):
+        for i in tweepy.Cursor(api.user_timeline,id=user).items(n):
             tweets.append(i.text)
         str.success(tweets)
         #posts= api.user_timeline(screen_name='username',count=n,lang='en',tweet_mode='extended')
