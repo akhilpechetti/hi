@@ -44,5 +44,5 @@ if __name__ == '__main__':
     auth = tweepy.OAuthHandler(CONSUMER_KEY,CONSUMER_SECRET)
     auth.set_access_token(OAUTH_TOKEN,OAUTH_TOKEN_SECRET)
     api= tweepy.API(auth,wait_on_rate_limit=True)
-    cursor=tweepy.Cursor(api.user_timeline,id=user).items(10)
+    #cursor=tweepy.Cursor(api.user_timeline,id=user).items(10)
     main()
