@@ -20,7 +20,7 @@ def main():
         auth = tweepy.OAuthHandler(CONSUMER_KEY,CONSUMER_SECRET)
         auth.set_access_token(OAUTH_TOKEN,OAUTH_TOKEN_SECRET)
         api= tweepy.API(auth,wait_on_rate_limit=True)
-        posts= api.user_timeline(screen_name='username',count=n,lang='en',tweet_mode='extended')
+        posts= api.user_timeline(screen_name='username',count=n,tweet_mode='extended')
         st.success('logged in')
     if st.button('n recent tweets'):
         m=st.number_input('number',1,2000)
