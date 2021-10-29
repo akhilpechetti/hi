@@ -10,13 +10,13 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 analyzer = SentimentIntensityAnalyzer()
 
 from PIL import Image
-def main():
+def main1():
     tweet=st.text_input('tweet')
     if st.button('1'):
         vs = analyzer.polarity_scores(tweet)
         st.write("{}… {}".format(tweet[:30], str(vs)))
 
-def main1():
+def main():
     CONSUMER_KEY = st.text_input('consumer key')
     CONSUMER_SECRET = st.text_input('sec')
     OAUTH_TOKEN = st.text_input('ctok')
@@ -28,6 +28,6 @@ def main1():
         auth.set_access_token(OAUTH_TOKEN,OAUTH_TOKEN_SECRET)
         api= tweepy.API(auth,wait_on_rate_limit=True)
         posts= api.user_timeline(screen_name='username',count=n,lang='en',tweet_mode='extended')
-        print(posts[0:2])
+        st.write(posts[0:2])
 if __name__ == '__main__':
         main()
