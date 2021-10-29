@@ -15,11 +15,12 @@ def main():
     OAUTH_TOKEN = st.text_input('oauth token')
     OAUTH_TOKEN_SECRET = st.text_input('oauth token secret')
     username = st.text_input('username want to check')
+    if st.button('login'):
+        auth = tweepy.OAuthHandler(CONSUMER_KEY,CONSUMER_SECRET)
+        auth.set_access_token(OAUTH_TOKEN,OAUTH_TOKEN_SECRET)
+        api= tweepy.API(auth,wait_on_rate_limit=True)
+        posts= api.user_timeline(screen_name='username',count=n,lang='en',tweet_mode='extended')
     n=st.number_input('how many tweets',1,2000)
-    auth = tweepy.OAuthHandler(CONSUMER_KEY,CONSUMER_SECRET)
-    auth.set_access_token(OAUTH_TOKEN,OAUTH_TOKEN_SECRET)
-    api= tweepy.API(auth,wait_on_rate_limit=True)
-    posts= api.user_timeline(screen_name='username',count=n,lang='en',tweet_mode='extended')
     if st.button['n recent tweets']:
         m=st.number_input('number',1,2000)
         i=1
