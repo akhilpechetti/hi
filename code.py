@@ -27,11 +27,13 @@ def main1():
         st.write("{}… {}".format(tweet[:30], str(vs)))
 
 def main():
-    username = st.text_input('username want to check')
+    user = st.text_input('username want to check')
     n=st.number_input('how many tweets',1,2000)
     if st.button('login'):
-        posts= api.user_timeline(screen_name='username',count=n,lang='en',tweet_mode='extended')
-        st.write(posts[0:2])
+        for status in tweepy.Cursor(api.home_timeline,screen_name=user).items(10):
+        print(status.text)
+        #posts= api.user_timeline(screen_name='username',count=n,lang='en',tweet_mode='extended')
+        #st.write(posts[0:2])
 if __name__ == '__main__':
     CONSUMER_KEY = '3tDVUGFlwUAfrjtTNO6k1xfqW'
     CONSUMER_SECRET = '9I3BEaSP2LqS2wfQu0qXefJXDjUsqzouhoBvbDG6onv5VfU4lL'
