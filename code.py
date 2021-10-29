@@ -30,8 +30,10 @@ def main():
     user = st.text_input('username want to check')
     n=st.number_input('how many tweets',1,2000)
     if st.button('login'):
-        for status in tweepy.Cursor(api.home_timeline,screen_name=user).items(10):
-        st.write('{}'.format(status.text))
+        tweets=[]
+        for i in tweepy.Cursor(client.user_timeline,id=user).items(n):
+            tweets.append(i.text)
+        str.success(tweets)
         #posts= api.user_timeline(screen_name='username',count=n,lang='en',tweet_mode='extended')
         #st.write(posts[0:2])
 if __name__ == '__main__':
@@ -42,4 +44,5 @@ if __name__ == '__main__':
     auth = tweepy.OAuthHandler(CONSUMER_KEY,CONSUMER_SECRET)
     auth.set_access_token(OAUTH_TOKEN,OAUTH_TOKEN_SECRET)
     api= tweepy.API(auth,wait_on_rate_limit=True)
+    cursor=tweepy.Cursor(api.user_timeline,id=user).items(10)
     main()
