@@ -11,7 +11,7 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 analyzer = SentimentIntensityAnalyzer()
 
 from PIL import Image
-def auth():
+def authe():
     global CONSUMER_KEY
     global CONSUMER_SECRET
     global OAUTH_TOKEN
@@ -25,7 +25,7 @@ def creat():
     #CONSUMER_SECRET = '9I3BEaSP2LqS2wfQu0qXefJXDjUsqzouhoBvbDG6onv5VfU4lL'
     #OAUTH_TOKEN = '870901794452291584-zx8zAHDfvt9EdsCAAdNg9r5Se6GSiPP'
     #OAUTH_TOKEN_SECRET = 'RhOPigMTtITcw1c6O4L2wGg7qcgv7lqkzQpFpbFVyHM2e'
-    auth()
+    authe()
     auth = tweepy.OAuthHandler(CONSUMER_KEY,CONSUMER_SECRET)
     auth.set_access_token(OAUTH_TOKEN,OAUTH_TOKEN_SECRET)
     api= tweepy.API(auth,wait_on_rate_limit=True)
