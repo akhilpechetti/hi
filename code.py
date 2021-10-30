@@ -47,6 +47,15 @@ def main():
     OAUTH_TOKEN_SECRET = 'RhOPigMTtITcw1c6O4L2wGg7qcgv7lqkzQpFpbFVyHM2e'
     auth = twitter.oauth.OAuth(OAUTH_TOKEN,OAUTH_TOKEN_SECRET,CONSUMER_KEY,CONSUMER_SECRET)
     twitter_api = twitter.Twitter(auth=auth)
+    count = 20
+    query = "vaccine"
+    tweets = twitter_api.search.tweets(q=query, count=count,lang='en',tweet_mode="extended")
+    tweetsWithSent = []
+    for t in tweets['statuses']:
+       text = (t['full_text'])
+       ps = analyzer.polarity_scores(text)
+       tweetsWithSent.append({'text':text, 'compound':ps['compound']})
+    st.write(tweetswithSent)
 if __name__ == '__main__':
     #cursor=tweepy.Cursor(api.user_timeline,id=user).items(10)
     main()
