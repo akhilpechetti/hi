@@ -82,6 +82,8 @@ def creat():
     #postive_tweets()
     #postive_percent()
     #value_coun()
+    if st.button('sentiment vs no.of tweets graph):
+        value_coun_graph()
     
 def clean(text):
     text=re.sub(r'@[A-Za-z0-9]+','',text)#remove mentions
@@ -145,7 +147,7 @@ def neutral_percent():
     req_tweets=req_tweets['tweets']
     st.header('Neutral tweets percent')
     st.write(round((req_tweets.shape[0]/df.shape[0])*100,1))
-def value_coun():
+def value_coun_graph():
     analysis_df['analysis'].value_counts()
     plt.title('sentment analysis')
     plt.xlabel('sentiment')
