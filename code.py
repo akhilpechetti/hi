@@ -20,7 +20,8 @@ def main():
     auth.set_access_token(OAUTH_TOKEN,OAUTH_TOKEN_SECRET)
     api= tweepy.API(auth,wait_on_rate_limit=True)
     username=st.text_input('username')
-    posts= api.user_timeline(screen_name=username,count=10,tweet_mode='extended')
+    count=st.number_input('no of tweets')
+    posts= api.user_timeline(screen_name=username,count=count,tweet_mode='extended')
     i=1
     df=pd.DataFrame([tweet.full_text for tweet in posts], columns=['tweets'])
     for tweet in posts[0:5]:
