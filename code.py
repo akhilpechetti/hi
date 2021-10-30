@@ -44,6 +44,7 @@ def creat():
     st.dataframe(df)
     df['compound']=df['tweets'].apply(sentiment)
     st.dataframe(df)
+    wordcl()
 def clean(text):
     text=re.sub(r'@[A-Za-z0-9]+','',text)#remove mentions
     text=re.sub(r'#','',text)#remove hashtags
@@ -53,6 +54,12 @@ def clean(text):
 def sentiment(text):
     ps=analyzer.polarity_scores(text)
     return ps['compound']
+def wordcl():
+    allwords=''.join([twts from twts in df['tweets']])
+    wordcloud=WordCloud(width=500, height=300,random_state=21,max_font_size=119).generate(allwords)
+    plt.imshow(wordcloud,interpolation='bilinear')
+    plt.axis('off')
+    plt.show()
 def main():
     import tweepy
     creat()
