@@ -64,7 +64,7 @@ def wordcl():
     wordcloud=WordCloud(width=500, height=300,random_state=21,max_font_size=119).generate(allwords)
     plt.imshow(wordcloud,interpolation='bilinear')
     plt.axis('off')
-    plt.show()
+    st.image(plt.show())
 def main():
     import tweepy
     creat()
