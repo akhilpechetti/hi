@@ -38,7 +38,7 @@ def creat():
     n=st.slider('no.of tweets to display for top for an overview')
     posts= api.user_timeline(screen_name=username,count=count,tweet_mode='extended')
     i=1
-    if username is not NULL:
+    if username is NULL:
         df=pd.DataFrame([tweet.full_text for tweet in posts], columns=['tweets'])
         df['tweets']=df['tweets'].apply(clean)
     else:
