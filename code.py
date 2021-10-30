@@ -42,14 +42,22 @@ def creat():
     for tweet in posts[0:n]:
         st.write(str(i)+')' + tweet.full_text+'\n')
         i=i+1
-    st.header('Dataset')
-    st.dataframe(df)
+    #st.header('Dataset')
+    if st.button('view dataset'):
+        st.dataframe(df)
+    #st.dataframe(df)
     df['tweets']=df['tweets'].apply(clean)
-    st.dataframe(df)
-    df['score']=df['tweets'].apply(sentiment)
-    st.dataframe(df)
-    df['analysis']=df['score'].apply(getanalysis)
-    st.dataframe(df)
+    #st.dataframe(df)
+    scores_df['score']=scores_df['tweets'].apply(sentiment)
+    if st.button('dataset wth scores'):
+        st.dataframe(scores_df)
+    global analysis_df
+    analysis_df=scores_df.copy()
+    #st.dataframe(df)
+    analysis_df['analysis']=analysis_df['score'].apply(getanalysis)
+    if st.button('analysis set'):
+        st.dataframe(analysis_df)
+    #st.dataframe(df)
     wordcl()
     #postive_tweets()
     postive_percent()
@@ -72,6 +80,8 @@ def wordcl():#wordcloud
     plt.show()
     st.pyplot()
 def getanalysis(score):
+    global scores_df
+    scores_df=df.copy()
     if score<0:
         return 'Negative'
     elif score==0:
@@ -79,6 +89,8 @@ def getanalysis(score):
     else:
         return 'Positive'
 def postive_tweets():
+    global analysis_df
+    analysis_df=scores_df.copy()
     j=1
     sortedDF=df.sort_values(by=['score'])
     for i in range(0,sortedDF.shape[0]):
