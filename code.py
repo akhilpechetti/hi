@@ -41,12 +41,16 @@ def creat():
     st.dataframe(df)
     df['tweets']=df['tweets'].apply(clean)
     st.dataframe(df)
+    df['compound']=df['tweets'].apply(sentiment)
 def clean(text):
     text=re.sub(r'@[A-Za-z0-9]+','',text)#remove mentions
     text=re.sub(r'#','',text)#remove hashtags
     text=re.sub(r'RT[\s]+','',text)#remove retweets
     text=re.sub(r'https?:\/\/\S+','',text)#remove links
     return text
+def sentiment(text):
+    ps=analyzer.polarity_scores(text)
+    return ps['compound']
 def main():
     import tweepy
     creat()
