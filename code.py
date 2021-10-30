@@ -28,6 +28,7 @@ def main():
     for tweet in posts[0:n]:
         st.write(str(i)+')' + tweet.full_text+'\n')
         i=i+1
+    st.dataframe(df)
 if __name__ == '__main__':
     #cursor=tweepy.Cursor(api.user_timeline,id=user).items(10)
     main()
