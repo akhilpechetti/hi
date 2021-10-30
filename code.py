@@ -98,8 +98,8 @@ def postive_percent():
 def value_coun():
     df['analysis'].value_counts()
     plt.title('sentment analysis')
-    plt.xlable('sentiment')
-    plt.ylable('counts')
+    plt.xlabel('sentiment')
+    plt.ylabel('counts')
     df['analysis'].value_counts().plot(kind='bar')
     plt.show()
     st.pyplot()
