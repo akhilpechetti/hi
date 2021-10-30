@@ -48,6 +48,8 @@ def creat():
     df['compound']=df['tweets'].apply(sentiment)
     st.dataframe(df)
     wordcl()
+    df['analysis']=df['compound'].apply(getanalysis)
+    st.dataframe(df)
     
 def clean(text):
     text=re.sub(r'@[A-Za-z0-9]+','',text)#remove mentions
@@ -58,13 +60,20 @@ def clean(text):
 def sentiment(text):
     ps=analyzer.polarity_scores(text)
     return ps['compound']
-def wordcl():
+def wordcl():#wordcloud
     allwords=''.join([twts for twts in df['tweets']])
     wordcloud=WordCloud(width=500, height=300,random_state=21,max_font_size=119).generate(allwords)
     plt.imshow(wordcloud,interpolation='bilinear')
     plt.axis('off')
     plt.show()
     st.pyplot()
+def getanalysis(score):
+    if score<0:
+        return 'Negative'
+    elif score==0:
+        return 'Neutral'
+    else:
+        return 'Positive'
 def main():
     import tweepy
     creat()
