@@ -63,8 +63,8 @@ def creat():
     #st.dataframe(df)
     if st.button('wordcloud image of most used words'):
         wordcl()
-    menu = ['positive tweet percent', 'negative tweet percent','neutral tweet percent']
-    choice = st.selectbox('percent of different tweets', menu)
+    menu = ['None','positive tweet percent', 'negative tweet percent','neutral tweet percent']
+    choice = st.selectbox('percent of different tweets based on sentiment', menu)
     if choice=='positive tweet percent':
         postive_percent()
     if choice=='negative tweet percent':
