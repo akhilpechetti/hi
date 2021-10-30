@@ -40,6 +40,13 @@ def main():
     s1=st.text_input('tweet')
     vs = analyzer.polarity_scores(s1)
     st.write("{}… {}".format(s1[:30], str(vs)))
+    import twitter
+   CONSUMER_KEY = '3tDVUGFlwUAfrjtTNO6k1xfqW'
+    CONSUMER_SECRET = '9I3BEaSP2LqS2wfQu0qXefJXDjUsqzouhoBvbDG6onv5VfU4lL'
+    OAUTH_TOKEN = '870901794452291584-zx8zAHDfvt9EdsCAAdNg9r5Se6GSiPP'
+    OAUTH_TOKEN_SECRET = 'RhOPigMTtITcw1c6O4L2wGg7qcgv7lqkzQpFpbFVyHM2e'
+    auth = twitter.oauth.OAuth(OAUTH_TOKEN,OAUTH_TOKEN_SECRET,CONSUMER_KEY,CONSUMER_SECRET)
+    twitter_api = twitter.Twitter(auth=auth)
 if __name__ == '__main__':
     #cursor=tweepy.Cursor(api.user_timeline,id=user).items(10)
     main()
