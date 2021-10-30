@@ -58,7 +58,7 @@ def creat():
     analysis_df=scores_df.copy()
     #st.dataframe(df)
     analysis_df['analysis']=analysis_df['score'].apply(getanalysis)
-    if st.button('dataset containing positive or negative tweet'):
+    if st.button('dataset containing positive or negative tweet or neutral tweet'):
         st.dataframe(analysis_df)
     #st.dataframe(df)
     if st.button('wordcloud image of most used words'):
