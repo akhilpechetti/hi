@@ -77,7 +77,7 @@ def getanalysis(score):
         return 'Positive'
 def postive_tweets():
     j=1
-    sortedDF=df.sort_values(by=['scores'])
+    sortedDF=df.sort_values(by=['score'])
     for i in range(0,sortedDF.shape[0]):
         if(sortedDF['analysis'][i]=='Positive'):
             st.write(str(j)+')'+sortedDF['tweets'][i]+'\n')
