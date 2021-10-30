@@ -96,11 +96,11 @@ def postive_percent():
     req_tweets=req_tweets['tweets']
     st.write(round((req_tweets.shape[0]/df.shape[0])*100,1))
 def value_coun():
-    df['analysis'].values_counts()
+    df['analysis'].value_counts()
     plt.title('sentment analysis')
     plt.xlable('sentiment')
     plt.ylable('counts')
-    df['analysis'].values_counts().plot(kind='bar')
+    df['analysis'].value_counts().plot(kind='bar')
     plt.show()
     st.pyplot()
     
