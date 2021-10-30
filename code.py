@@ -4,6 +4,7 @@ import pandas as pd
 import json
 import tweepy
 from wordcloud import WordCloud
+import matplotlib as plt
 #from flasgger import Swagger
 import streamlit as st
 import joblib
