@@ -82,7 +82,7 @@ def creat():
     #postive_tweets()
     #postive_percent()
     #value_coun()
-    if st.button('sentiment vs no.of tweets graph):
+    if st.button('sentiment vs no.of tweets graph'):
         value_coun_graph()
     
 def clean(text):
