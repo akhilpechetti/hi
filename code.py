@@ -70,7 +70,14 @@ def creat():
         negative_percent()
     if choice=='neutral tweet percent':
         neutral_percent()
-        
+    menu1 = ['positive tweets', 'negative tweets','neutral tweets']
+    choice1 = st.selectbox('View positive, negative or neutral tweets', menu1)
+    if choice1=='positive tweets':
+        postive_tweets()
+    if choice=='negative tweets':
+        negative_tweets()
+    if choice=='neutral tweets':
+        neutral_tweets()
     #postive_tweets()
     #postive_percent()
     #value_coun()
@@ -99,6 +106,7 @@ def getanalysis(score):
     else:
         return 'Positive'
 def postive_tweets():
+    st.header('postive tweets')
     j=1
     sortedDF=analysis_df.sort_values(by=['score'])
     for i in range(0,sortedDF.shape[0]):
@@ -106,11 +114,20 @@ def postive_tweets():
             st.write(str(j)+')'+sortedDF['tweets'][i]+'\n')
             j=j+1
 def negative_tweets():
+    st.header('Negative tweets')
     j=1
     sortedDF1=analysis_df.sort_values(by=['score'],ascending=False)
     for i in range(0,sortedDF1.shape[0]):
         if(sortedDF1['analysis'][i]=='Negative'):
-            st.write(str(j)+')'+sortedDF['tweets'][i]+'\n')
+            st.write(str(j)+')'+sortedDF1['tweets'][i]+'\n')
+            j=j+1
+def neutral_tweets():
+    st.header('Neutral tweets')
+    j=1
+    sortedDF2=analysis_df.sort_values(by=['score'],ascending=False)
+    for i in range(0,sortedDF2.shape[0]):
+        if(sortedDF2['analysis'][i]=='Neutral'):
+            st.write(str(j)+')'+sortedDF2['tweets'][i]+'\n')
             j=j+1
 def postive_percent():
     req_tweets=analysis_df[analysis_df.analysis=='Positive']
