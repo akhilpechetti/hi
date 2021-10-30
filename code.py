@@ -42,6 +42,7 @@ def creat():
     df['tweets']=df['tweets'].apply(clean)
     st.dataframe(df)
     df['compound']=df['tweets'].apply(sentiment)
+    st.dataframe(df)
 def clean(text):
     text=re.sub(r'@[A-Za-z0-9]+','',text)#remove mentions
     text=re.sub(r'#','',text)#remove hashtags
