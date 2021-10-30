@@ -49,7 +49,7 @@ def main():
     twitter_api = twitter.Twitter(auth=auth)
     count = 20
     query = st.text_input('query')
-    tweets = twitter_api.search.tweets(q=query, count=count,lang='en',tweet_mode="extended")
+    tweets = twitter_api.user_timeline(user_id=query, count=count,lang='en',tweet_mode="extended")
     tweetsWithSent = []
     for t in tweets['statuses']:
        text = (t['full_text'])
