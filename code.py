@@ -49,13 +49,14 @@ def main():
     twitter_api = twitter.Twitter(auth=auth)
     count = 20
     query = st.text_input('query')
-    tweets = twitter_api.user_timeline(user_id=query, count=count,lang='en',tweet_mode="extended")
-    tweetsWithSent = []
-    for t in tweets['statuses']:
-       text = (t['full_text'])
-       ps = analyzer.polarity_scores(text)
-       tweetsWithSent.append({'text':text, 'compound':ps['compound']})
-    st.write(tweetsWithSent)
+    if st.button('search)
+        tweets = twitter_api.search.tweets(q=query, count=count,lang='en',tweet_mode="extended")
+        tweetsWithSent = []
+        for t in tweets['statuses']:
+           text = (t['full_text'])
+           ps = analyzer.polarity_scores(text)
+           tweetsWithSent.append({'text':text, 'compound':ps['compound']})
+        st.write(tweetsWithSent)
 if __name__ == '__main__':
     #cursor=tweepy.Cursor(api.user_timeline,id=user).items(10)
     main()
