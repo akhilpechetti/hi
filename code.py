@@ -116,9 +116,14 @@ def postive_percent():
     st.header('Postive tweets percent')
     st.write(round((req_tweets.shape[0]/df.shape[0])*100,1))
 def negative_percent():
-    req_tweets=analysis_df[analysis_df.analysis=='Positive']
+    req_tweets=analysis_df[analysis_df.analysis=='Negative']
     req_tweets=req_tweets['tweets']
     st.header('Negative tweets percent')
+    st.write(round((req_tweets.shape[0]/df.shape[0])*100,1))
+def neutral_percent():
+    req_tweets=analysis_df[analysis_df.analysis=='Neutral']
+    req_tweets=req_tweets['tweets']
+    st.header('Neutral tweets percent')
     st.write(round((req_tweets.shape[0]/df.shape[0])*100,1))
 def value_coun():
     analysis_df['analysis'].value_counts()
