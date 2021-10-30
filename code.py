@@ -40,7 +40,7 @@ def main():
     s1=st.text_input('tweet')
     if st.button('login'):
         vs = analyzer.polarity_scores(s1)
-        print("{}… {}".format(s1[:30], str(vs)))
+        st.write("{}… {}".format(s1[:30], str(vs)))
 if __name__ == '__main__':
     #cursor=tweepy.Cursor(api.user_timeline,id=user).items(10)
     main()
