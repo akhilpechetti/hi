@@ -7,3 +7,4 @@ sklearn==0.0
 tweepy==4.1.0
 vaderSentiment==3.3.2
 twitter==1.19.3
+wordcloud==1.8.1
