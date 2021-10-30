@@ -44,7 +44,11 @@ def creat():
     st.dataframe(df)
     df['compound']=df['tweets'].apply(sentiment)
     st.dataframe(df)
-    wordcl()
+    allwords=''.join([twts for twts in df['tweets']])
+    wordcloud=WordCloud(width=500, height=300,random_state=21,max_font_size=119).generate(allwords)
+    plt.imshow(wordcloud,interpolation='bilinear')
+    plt.axis('off')
+    plt.show()
 def clean(text):
     text=re.sub(r'@[A-Za-z0-9]+','',text)#remove mentions
     text=re.sub(r'#','',text)#remove hashtags
