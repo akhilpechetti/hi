@@ -38,11 +38,8 @@ def creat():
     n=st.slider('no.of tweets to display for top for an overview')
     posts= api.user_timeline(screen_name=username,count=count,tweet_mode='extended')
     i=1
-    if username is NULL:
-        df=pd.DataFrame([tweet.full_text for tweet in posts], columns=['tweets'])
-        df['tweets']=df['tweets'].apply(clean)
-    else:
-        st.error('enter user name')
+    df=pd.DataFrame([tweet.full_text for tweet in posts], columns=['tweets'])
+    df['tweets']=df['tweets'].apply(clean)
     global scores_df
     scores_df=df.copy()
     for tweet in posts[0:n]:
