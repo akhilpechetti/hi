@@ -48,7 +48,10 @@ def creat():
     st.dataframe(df)
     allwords=''.join([twts for twts in df['tweets']])
     wordcloud=WordCloud(width=500, height=300,random_state=21,max_font_size=119).generate(allwords)
-    st.pyplot(plt.imshow(wordcloud,interpolation='bilinear'))
+    st.image(plt.imshow(wordcloud,interpolation='bilinear'))
+    plt.axis('off')
+    st.pyplot()
+    
 def clean(text):
     text=re.sub(r'@[A-Za-z0-9]+','',text)#remove mentions
     text=re.sub(r'#','',text)#remove hashtags
