@@ -25,7 +25,7 @@ def main():
     posts= api.user_timeline(screen_name=username,count=count,tweet_mode='extended')
     i=1
     df=pd.DataFrame([tweet.full_text for tweet in posts], columns=['tweets'])
-    for tweet in posts[0:]:
+    for tweet in posts[0:n]:
         st.write(str(i)+')' + tweet.full_text+'\n')
         i=i+1
 if __name__ == '__main__':
