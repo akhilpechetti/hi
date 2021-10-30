@@ -27,6 +27,7 @@ def creat():
     #CONSUMER_SECRET = '9I3BEaSP2LqS2wfQu0qXefJXDjUsqzouhoBvbDG6onv5VfU4lL'
     #OAUTH_TOKEN = '870901794452291584-zx8zAHDfvt9EdsCAAdNg9r5Se6GSiPP'
     #OAUTH_TOKEN_SECRET = 'RhOPigMTtITcw1c6O4L2wGg7qcgv7lqkzQpFpbFVyHM2e'
+    global df
     authe()
     auth = tweepy.OAuthHandler(CONSUMER_KEY,CONSUMER_SECRET)
     auth.set_access_token(OAUTH_TOKEN,OAUTH_TOKEN_SECRET)
@@ -47,9 +48,7 @@ def creat():
     st.dataframe(df)
     allwords=''.join([twts for twts in df['tweets']])
     wordcloud=WordCloud(width=500, height=300,random_state=21,max_font_size=119).generate(allwords)
-    plt.imshow(wordcloud,interpolation='bilinear')
-    plt.axis('off')
-    plt.show()
+    st.pyplot(wordcloud)
 def clean(text):
     text=re.sub(r'@[A-Za-z0-9]+','',text)#remove mentions
     text=re.sub(r'#','',text)#remove hashtags
