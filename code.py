@@ -48,8 +48,9 @@ def creat():
     st.dataframe(df)
     allwords=''.join([twts for twts in df['tweets']])
     wordcloud=WordCloud(width=500, height=300,random_state=21,max_font_size=119).generate(allwords)
-    st.image(plt.imshow(wordcloud,interpolation='bilinear'))
+    plt.imshow(wordcloud,interpolation='bilinear')
     plt.axis('off')
+    plt.show()
     st.pyplot()
     
 def clean(text):
