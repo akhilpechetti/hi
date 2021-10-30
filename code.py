@@ -47,12 +47,7 @@ def creat():
     st.dataframe(df)
     df['compound']=df['tweets'].apply(sentiment)
     st.dataframe(df)
-    allwords=''.join([twts for twts in df['tweets']])
-    wordcloud=WordCloud(width=500, height=300,random_state=21,max_font_size=119).generate(allwords)
-    plt.imshow(wordcloud,interpolation='bilinear')
-    plt.axis('off')
-    plt.show()
-    st.pyplot()
+    wordcl()
     
 def clean(text):
     text=re.sub(r'@[A-Za-z0-9]+','',text)#remove mentions
@@ -68,6 +63,8 @@ def wordcl():
     wordcloud=WordCloud(width=500, height=300,random_state=21,max_font_size=119).generate(allwords)
     st.image(plt.imshow(wordcloud,interpolation='bilinear'))
     plt.axis('off')
+    plt.show()
+    st.pyplot()
 def main():
     import tweepy
     creat()
