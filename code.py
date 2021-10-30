@@ -22,6 +22,7 @@ def main():
     username=st.text_input('username')
     posts= api.user_timeline(screen_name=username,count=10,tweet_mode='extended')
     i=1
+    df=pd.DataFrame([tweet.full_text for tweet in posts], columns=['tweets'])
     for tweet in posts[0:5]:
         st.write(str(i)+')' + tweet.full_text+'\n')
         i=i+1
