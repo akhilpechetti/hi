@@ -51,6 +51,7 @@ def creat():
     st.dataframe(df)
     wordcl()
     postive_tweets()
+    postive_percent()
     
 def clean(text):
     text=re.sub(r'@[A-Za-z0-9]+','',text)#remove mentions
@@ -82,6 +83,18 @@ def postive_tweets():
         if(sortedDF['analysis'][i]=='Positive'):
             st.write(str(j)+')'+sortedDF['tweets'][i]+'\n')
             j=j+1
+def negative_tweets():
+    j=1
+    sortedDF=df.sort_values(by=['score'],ascending=False)
+    for i in range(0,sortedDF.shape[0]):
+        if(sortedDF['analysis'][i]=='Negative'):
+            st.write(str(j)+')'+sortedDF['tweets'][i]+'\n')
+            j=j+1
+def postive_percent():
+    req_tweets=df[df.analysis=='Postive']
+    req_tweets=req_tweets['tweets']
+    st.write(round((req_tweets.shape[0]/df.shape[0])*100,1))
+                  
 def main():
     import tweepy
     creat()
