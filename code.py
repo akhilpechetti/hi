@@ -48,7 +48,7 @@ def main():
     auth = twitter.oauth.OAuth(OAUTH_TOKEN,OAUTH_TOKEN_SECRET,CONSUMER_KEY,CONSUMER_SECRET)
     twitter_api = twitter.Twitter(auth=auth)
     count = 20
-    query = st.text_input('query')
+    query = 'vaccine'#st.text_input('query')
     tweets = twitter_api.search.tweets(q=query, count=count,lang='en',tweet_mode="extended")
     tweetsWithSent = []
     for t in tweets['statuses']:
