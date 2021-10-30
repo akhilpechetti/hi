@@ -49,7 +49,7 @@ def main():
     twitter_api = twitter.Twitter(auth=auth)
     count = 20
     query = st.text_input('query')
-    if st.button('search)
+    if st.button('search):
         tweets = twitter_api.search.tweets(q=query, count=count,lang='en',tweet_mode="extended")
         tweetsWithSent = []
         for t in tweets['statuses']:
