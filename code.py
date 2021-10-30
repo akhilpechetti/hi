@@ -68,6 +68,8 @@ def creat():
         postive_percent()
     if choice=='negative tweet percent':
         negative_percent()
+    if choice=='neutral tweet percent':
+        neutral_percent()
         
     #postive_tweets()
     #postive_percent()
