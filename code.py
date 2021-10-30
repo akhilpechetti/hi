@@ -21,10 +21,11 @@ def main():
     api= tweepy.API(auth,wait_on_rate_limit=True)
     username=st.text_input('username')
     count=st.number_input('no of tweets')
+    n=st.number_input('no.of tweets to display')
     posts= api.user_timeline(screen_name=username,count=count,tweet_mode='extended')
     i=1
     df=pd.DataFrame([tweet.full_text for tweet in posts], columns=['tweets'])
-    for tweet in posts[0:5]:
+    for tweet in posts[0:]:
         st.write(str(i)+')' + tweet.full_text+'\n')
         i=i+1
 if __name__ == '__main__':
