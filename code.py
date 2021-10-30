@@ -57,7 +57,7 @@ def main112():
            ps = analyzer.polarity_scores(text)
            tweetsWithSent.append({'text':text, 'compound':ps['compound']})
         st.write(tweetsWithSent)
- def main():
+def main():
     import tweepy
     CONSUMER_KEY = '3tDVUGFlwUAfrjtTNO6k1xfqW'
     CONSUMER_SECRET = '9I3BEaSP2LqS2wfQu0qXefJXDjUsqzouhoBvbDG6onv5VfU4lL'
