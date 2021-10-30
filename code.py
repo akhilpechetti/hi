@@ -63,6 +63,9 @@ def main():
     CONSUMER_SECRET = '9I3BEaSP2LqS2wfQu0qXefJXDjUsqzouhoBvbDG6onv5VfU4lL'
     OAUTH_TOKEN = '870901794452291584-zx8zAHDfvt9EdsCAAdNg9r5Se6GSiPP'
     OAUTH_TOKEN_SECRET = 'RhOPigMTtITcw1c6O4L2wGg7qcgv7lqkzQpFpbFVyHM2e'
+    auth = tweepy.OAuthHandler(CONSUMER_KEY,CONSUMER_SECRET)
+    auth.set_access_token(OAUTH_TOKEN,OAUTH_TOKEN_SECRET)
+    api= tweepy.API(auth,wait_on_rate_limit=True)
     posts= api.user_timeline(screen_name='Samanthaprabhu2',count=10,tweet_mode='extended')
     i=1
     for tweet in posts[0:5]:
