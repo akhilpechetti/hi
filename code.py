@@ -26,12 +26,20 @@ def main1():
         vs = analyzer.polarity_scores(tweet)
         st.write("{}… {}".format(tweet[:30], str(vs)))
 
-def main():
+def main2():
     st.title('file upload')
     menu=['dataset']
     choice=st.sidebar.selectbox('menu',menu)
     if choice=='dataset':
         st.subheader('dataset')
+def main():
+    from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+    analyzer = SentimentIntensityAnalyzer()
+    #analyzer = SentimentIntensityAnalyzer()
+    import streamlit as st
+    s1=st.text_input('tweet')
+    vs = analyzer.polarity_scores(s1)
+    print("{}… {}".format(s1[:30], str(vs)))
 if __name__ == '__main__':
     #cursor=tweepy.Cursor(api.user_timeline,id=user).items(10)
     main()
