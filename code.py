@@ -11,6 +11,7 @@ import joblib
 import re
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 analyzer = SentimentIntensityAnalyzer()
+st.set_option('deprecation.showPyplotGlobalUse', False)
 
 from PIL import Image
 def authe():
