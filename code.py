@@ -55,7 +55,7 @@ def main():
        text = (t['full_text'])
        ps = analyzer.polarity_scores(text)
        tweetsWithSent.append({'text':text, 'compound':ps['compound']})
-    st.write(tweetswithSent)
+    st.write(tweetsWithSent)
 if __name__ == '__main__':
     #cursor=tweepy.Cursor(api.user_timeline,id=user).items(10)
     main()
