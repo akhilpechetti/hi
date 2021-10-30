@@ -21,7 +21,7 @@ def main():
     api= tweepy.API(auth,wait_on_rate_limit=True)
     username=st.text_input('username')
     count=st.number_input('no of tweets')
-    n=st.number_input('no.of tweets to display')
+    n=st.slider('no.of tweets to display')
     posts= api.user_timeline(screen_name=username,count=count,tweet_mode='extended')
     i=1
     df=pd.DataFrame([tweet.full_text for tweet in posts], columns=['tweets'])
