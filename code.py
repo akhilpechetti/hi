@@ -62,6 +62,13 @@ def creat():
     #st.dataframe(df)
     if st.button('wordcloud image of most used words'):
         wordcl()
+    menu = ['positive tweet percent', 'negative tweet percent','neutral tweet percent']
+    choice = st.selectbox('percent of different tweets', menu)
+    if choice=='positive tweet percent':
+        postive_percent()
+    if choice=='negative tweet percent':
+        negatie_percent()
+        
     #postive_tweets()
     postive_percent()
     value_coun()
@@ -106,6 +113,12 @@ def negative_tweets():
 def postive_percent():
     req_tweets=analysis_df[analysis_df.analysis=='Positive']
     req_tweets=req_tweets['tweets']
+    st.header('Postive tweets percent')
+    st.write(round((req_tweets.shape[0]/df.shape[0])*100,1))
+def negative_percent():
+    req_tweets=analysis_df[analysis_df.analysis=='Positive']
+    req_tweets=req_tweets['tweets']
+    st.header('Negative tweets percent')
     st.write(round((req_tweets.shape[0]/df.shape[0])*100,1))
 def value_coun():
     analysis_df['analysis'].value_counts()
