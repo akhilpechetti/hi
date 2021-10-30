@@ -39,6 +39,8 @@ def creat():
     posts= api.user_timeline(screen_name=username,count=count,tweet_mode='extended')
     i=1
     df=pd.DataFrame([tweet.full_text for tweet in posts], columns=['tweets'])
+    global scores_df
+    scores_df=df.copy()
     for tweet in posts[0:n]:
         st.write(str(i)+')' + tweet.full_text+'\n')
         i=i+1
@@ -80,8 +82,6 @@ def wordcl():#wordcloud
     plt.show()
     st.pyplot()
 def getanalysis(score):
-    global scores_df
-    scores_df=df.copy()
     if score<0:
         return 'Negative'
     elif score==0:
