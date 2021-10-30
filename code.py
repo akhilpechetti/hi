@@ -35,13 +35,14 @@ def creat():
     api= tweepy.API(auth,wait_on_rate_limit=True)
     username=st.text_input('username')
     count=st.number_input('no of tweets')
-    n=st.slider('no.of tweets to display')
+    n=st.slider('no.of tweets to display for top for an overview')
     posts= api.user_timeline(screen_name=username,count=count,tweet_mode='extended')
     i=1
     df=pd.DataFrame([tweet.full_text for tweet in posts], columns=['tweets'])
     for tweet in posts[0:n]:
         st.write(str(i)+')' + tweet.full_text+'\n')
         i=i+1
+    st.header('Dataset')
     st.dataframe(df)
     df['tweets']=df['tweets'].apply(clean)
     st.dataframe(df)
