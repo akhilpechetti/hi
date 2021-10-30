@@ -55,7 +55,7 @@ def sentiment(text):
     ps=analyzer.polarity_scores(text)
     return ps['compound']
 def wordcl():
-    allwords=''.join([twts from twts in df['tweets']])
+    allwords=''.join([twts for twts in df['tweets']])
     wordcloud=WordCloud(width=500, height=300,random_state=21,max_font_size=119).generate(allwords)
     plt.imshow(wordcloud,interpolation='bilinear')
     plt.axis('off')
