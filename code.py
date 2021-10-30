@@ -19,7 +19,8 @@ def main():
     auth = tweepy.OAuthHandler(CONSUMER_KEY,CONSUMER_SECRET)
     auth.set_access_token(OAUTH_TOKEN,OAUTH_TOKEN_SECRET)
     api= tweepy.API(auth,wait_on_rate_limit=True)
-    posts= api.user_timeline(screen_name='Samanthaprabhu2',count=10,tweet_mode='extended')
+    username=st.text_input('username')
+    posts= api.user_timeline(screen_name=username,count=10,tweet_mode='extended')
     i=1
     for tweet in posts[0:5]:
         st.write(str(i)+')' + tweet.full_text+'\n')
