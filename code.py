@@ -6,7 +6,7 @@ import tweepy
 #from flasgger import Swagger
 import streamlit as st
 import joblib
-#import re
+import re
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 analyzer = SentimentIntensityAnalyzer()
 
