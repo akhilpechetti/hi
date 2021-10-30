@@ -47,9 +47,10 @@ def creat():
     st.dataframe(df)
     df['score']=df['tweets'].apply(sentiment)
     st.dataframe(df)
-    wordcl()
     df['analysis']=df['score'].apply(getanalysis)
     st.dataframe(df)
+    wordcl()
+    postive_tweets()
     
 def clean(text):
     text=re.sub(r'@[A-Za-z0-9]+','',text)#remove mentions
@@ -74,6 +75,13 @@ def getanalysis(score):
         return 'Neutral'
     else:
         return 'Positive'
+def postive_tweets():
+    j=1
+    sortedDF=df.sort_values(by=['scores'])
+    for i in range(0,sortedDF.shape[0]):
+        if(sortedDF['analysis'][i]=='Positive'):
+            st.write(str(j)+')'+sortedDF['tweets'][i]+'\n')
+            j=j+1
 def main():
     import tweepy
     creat()
