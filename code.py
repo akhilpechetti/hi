@@ -75,9 +75,9 @@ def creat():
     choice1 = st.selectbox('View positive, negative or neutral tweets', menu1)
     if choice1=='positive tweets':
         postive_tweets()
-    if choice=='negative tweets':
+    if choice1=='negative tweets':
         negative_tweets()
-    if choice=='neutral tweets':
+    if choice1=='neutral tweets':
         neutral_tweets()
     #postive_tweets()
     #postive_percent()
