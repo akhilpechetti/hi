@@ -67,11 +67,11 @@ def creat():
     if choice=='positive tweet percent':
         postive_percent()
     if choice=='negative tweet percent':
-        negatie_percent()
+        negative_percent()
         
     #postive_tweets()
-    postive_percent()
-    value_coun()
+    #postive_percent()
+    #value_coun()
     
 def clean(text):
     text=re.sub(r'@[A-Za-z0-9]+','',text)#remove mentions
