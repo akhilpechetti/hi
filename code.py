@@ -89,31 +89,29 @@ def getanalysis(score):
     else:
         return 'Positive'
 def postive_tweets():
-    global analysis_df
-    analysis_df=scores_df.copy()
     j=1
-    sortedDF=df.sort_values(by=['score'])
+    sortedDF=analysis_df.sort_values(by=['score'])
     for i in range(0,sortedDF.shape[0]):
         if(sortedDF['analysis'][i]=='Positive'):
             st.write(str(j)+')'+sortedDF['tweets'][i]+'\n')
             j=j+1
 def negative_tweets():
     j=1
-    sortedDF=df.sort_values(by=['score'],ascending=False)
-    for i in range(0,sortedDF.shape[0]):
-        if(sortedDF['analysis'][i]=='Negative'):
+    sortedDF1=analysis_df.sort_values(by=['score'],ascending=False)
+    for i in range(0,sortedDF1.shape[0]):
+        if(sortedDF1['analysis'][i]=='Negative'):
             st.write(str(j)+')'+sortedDF['tweets'][i]+'\n')
             j=j+1
 def postive_percent():
-    req_tweets=df[df.analysis=='Positive']
+    req_tweets=analysis_df[analysis_df.analysis=='Positive']
     req_tweets=req_tweets['tweets']
     st.write(round((req_tweets.shape[0]/df.shape[0])*100,1))
 def value_coun():
-    df['analysis'].value_counts()
+    analysis_df['analysis'].value_counts()
     plt.title('sentment analysis')
     plt.xlabel('sentiment')
     plt.ylabel('counts')
-    df['analysis'].value_counts().plot(kind='bar')
+    analysis_df['analysis'].value_counts().plot(kind='bar')
     plt.show()
     st.pyplot()
     
