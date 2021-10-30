@@ -29,6 +29,8 @@ def creat():
         st.write(str(i)+')' + tweet.full_text+'\n')
         i=i+1
     st.dataframe(df)
+    df['tweets']=df['tweets'].apply(clean)
+    st.dataframe(df)
 def clean(text):
     text=re.sub(r'@[A-Za-z0-9]+','',text)#remove mentions
     text=re.sub(r'#','',text)#remove hashtags
@@ -38,8 +40,6 @@ def clean(text):
 def main():
     import tweepy
     creat()
-    df['tweets']=df['tweets'].apply(clean)
-    st.dataframe(df)
     
     
 if __name__ == '__main__':
