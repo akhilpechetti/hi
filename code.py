@@ -119,18 +119,18 @@ def postive_tweets():
 def negative_tweets():
     st.header('Negative tweets')
     j=1
-    sortedDF1=analysis_df.sort_values(by=['score'],ascending=False)
-    for i in range(0,sortedDF1.shape[0]):
-        if(sortedDF1['analysis'][i]=='Negative'):
-            st.write(str(j)+')'+sortedDF1['tweets'][i]+'\n')
+    sortedDF=analysis_df.sort_values(by=['score'],ascending=False)
+    for i in range(0,sortedDF.shape[0]):
+        if(sortedDF['analysis'][i]=='Negative'):
+            st.write(str(j)+')'+sortedDF['tweets'][i]+'\n')
             j=j+1
 def neutral_tweets():
     st.header('Neutral tweets')
     j=1
-    sortedDF2=analysis_df.sort_values(by=['score'],ascending=False)
-    for i in range(0,sortedDF2.shape[0]):
-        if(sortedDF2['analysis'][i]=='Neutral'):
-            st.write(str(j)+')'+sortedDF2['tweets'][i]+'\n')
+    sortedDF=analysis_df.sort_values(by=['score'],ascending=False)
+    for i in range(0,sortedDF.shape[0]):
+        if(sortedDF['analysis'][i]=='Neutral'):
+            st.write(str(j)+')'+sortedDF['tweets'][i]+'\n')
             j=j+1
 def postive_percent():
     req_tweets=analysis_df[analysis_df.analysis=='Positive']
