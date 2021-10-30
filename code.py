@@ -50,7 +50,7 @@ def creat():
     df['analysis']=df['score'].apply(getanalysis)
     st.dataframe(df)
     wordcl()
-    postive_tweets()
+    #postive_tweets()
     postive_percent()
     
 def clean(text):
@@ -91,7 +91,7 @@ def negative_tweets():
             st.write(str(j)+')'+sortedDF['tweets'][i]+'\n')
             j=j+1
 def postive_percent():
-    req_tweets=df[df.analysis=='Postive']
+    req_tweets=df[df.analysis=='Positive']
     req_tweets=req_tweets['tweets']
     st.write(round((req_tweets.shape[0]/df.shape[0])*100,1))
                   
