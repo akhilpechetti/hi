@@ -15,6 +15,7 @@ analyzer = SentimentIntensityAnalyzer()
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
+
 def load_saved_artifacts():
     #print("loading saved artifacts...start")
     global __model
@@ -30,94 +31,14 @@ def authe():
     global CONSUMER_SECRET
     global OAUTH_TOKEN
     global OAUTH_TOKEN_SECRET
+    global api
     CONSUMER_KEY = '3tDVUGFlwUAfrjtTNO6k1xfqW'
     CONSUMER_SECRET = '9I3BEaSP2LqS2wfQu0qXefJXDjUsqzouhoBvbDG6onv5VfU4lL'
     OAUTH_TOKEN = '870901794452291584-zx8zAHDfvt9EdsCAAdNg9r5Se6GSiPP'
     OAUTH_TOKEN_SECRET = 'RhOPigMTtITcw1c6O4L2wGg7qcgv7lqkzQpFpbFVyHM2e'
-
-
-def creat():
-    #CONSUMER_KEY = '3tDVUGFlwUAfrjtTNO6k1xfqW'
-    #CONSUMER_SECRET = '9I3BEaSP2LqS2wfQu0qXefJXDjUsqzouhoBvbDG6onv5VfU4lL'
-    #OAUTH_TOKEN = '870901794452291584-zx8zAHDfvt9EdsCAAdNg9r5Se6GSiPP'
-    #OAUTH_TOKEN_SECRET = 'RhOPigMTtITcw1c6O4L2wGg7qcgv7lqkzQpFpbFVyHM2e'
-    global df
-    authe()
     auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
     auth.set_access_token(OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
     api = tweepy.API(auth, wait_on_rate_limit=True)
-    username = st.text_input('username')
-    count = st.number_input('no of tweets')
-    n = st.slider('no.of tweets to display for top for an overview')
-    posts = api.user_timeline(screen_name=username,
-                              count=count, tweet_mode='extended')
-    i = 1
-    df = pd.DataFrame([tweet.full_text for tweet in posts], columns=['tweets'])
-    df['tweets'] = df['tweets'].apply(clean)
-    global scores_df
-    scores_df = df.copy()
-    for tweet in posts[0:n]:
-        st.write(str(i)+')' + tweet.full_text+'\n')
-        i = i+1
-    # st.header('Dataset')
-    if st.button('view dataset'):
-        st.dataframe(df,width=700, height=768)
-    # st.dataframe(df)
-    df['tweets'] = df['tweets'].apply(clean)
-    # st.dataframe(df)
-    scores_df['score'] = scores_df['tweets'].apply(sentiment)
-    if st.button('dataset wth scores'):
-        st.dataframe(scores_df)
-    global analysis_df
-    analysis_df = scores_df.copy()
-    # st.dataframe(df)
-    analysis_df['analysis'] = analysis_df['score'].apply(getanalysis)
-    if st.button('dataset containing positive or negative tweet or neutral tweet'):
-        st.dataframe(analysis_df)
-    # st.dataframe(df)
-    if st.button('wordcloud image of most used words'):
-        wordcl()
-    menu = ['None', 'positive tweet percent',
-            'negative tweet percent', 'neutral tweet percent']
-    choice = st.selectbox(
-        'percent of different tweets based on sentiment', menu)
-    if choice == 'positive tweet percent':
-        postive_percent()
-    if choice == 'negative tweet percent':
-        negative_percent()
-    if choice == 'neutral tweet percent':
-        neutral_percent()
-    menu1 = ['None', 'positive tweets', 'negative tweets', 'neutral tweets']
-    choice1 = st.selectbox('View positive, negative or neutral tweets', menu1)
-    if choice1 == 'positive tweets':
-        postive_tweets()
-    if choice1 == 'negative tweets':
-        negative_tweets()
-    if choice1 == 'neutral tweets':
-        neutral_tweets()
-    # postive_tweets()
-    # postive_percent()
-    # value_coun()
-    if st.button('sentiment vs no.of tweets graph'):
-        value_coun_graph()
-    global ak_df
-    ak_df = df.copy()
-    ak_df['catogery']=ak_df['tweets'].apply(catogery)
-    if st.button('view different categories of Tweets in Dataset'):
-        st.dataframe(ak_df)
-    menu1 = ['None', 'Sports related', 'Business related', 'Entertainment related','Politics related','Tech related']
-    choice1 = st.selectbox('view different categories of Tweets', menu1)
-    if choice1 == 'Sports related':
-        sports_tweets()
-    if choice1 == 'Business related':
-        business_tweets()
-    if choice1 == 'Entertainment related':
-        entertainment_tweets()
-    if choice1 == 'Politics related':
-        politic_tweets()
-    if choice1 == 'Tech related':
-        tech_tweets()
-
 
 def catogery(text):
     text=pd.Series(data=text)
@@ -144,7 +65,7 @@ def wordcl():  # wordcloud
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis('off')
     plt.show()
-    st.pyplot()
+    disp_col2.pyplot()
 
 
 def getanalysis(score):
@@ -155,69 +76,69 @@ def getanalysis(score):
     else:
         return 'Positive'
 def sports_tweets():
-    st.header('sports tweets')
+    disp_col5.header('sports tweets')
     j = 1
     for i in range(0, ak_df.shape[0]):
         if(ak_df['catogery'][i] == 'sport'):
-            st.write(str(j)+')'+ak_df['tweets'][i]+'\n')
+            disp_col5.write(str(j)+')'+ak_df['tweets'][i]+'\n')
             j = j+1
 def business_tweets():
-    st.header('business tweets')
+    disp_col5.header('business tweets')
     j = 1
     for i in range(0, ak_df.shape[0]):
         if(ak_df['catogery'][i] == 'business'):
-            st.write(str(j)+')'+ak_df['tweets'][i]+'\n')
+            disp_col5.write(str(j)+')'+ak_df['tweets'][i]+'\n')
             j = j+1
 def entertainment_tweets():
-    st.header('entertainment tweets')
+    disp_col5.header('entertainment tweets')
     j = 1
     for i in range(0, ak_df.shape[0]):
         if(ak_df['catogery'][i] == 'entertainment'):
-            st.write(str(j)+')'+ak_df['tweets'][i]+'\n')
+            disp_col5.write(str(j)+')'+ak_df['tweets'][i]+'\n')
             j = j+1
 def politic_tweets():
-    st.header('political tweets')
+    disp_col5.header('political tweets')
     j = 1
     for i in range(0, ak_df.shape[0]):
         if(ak_df['catogery'][i] == 'politics'):
-            st.write(str(j)+')'+ak_df['tweets'][i]+'\n')
+            disp_col5.write(str(j)+')'+ak_df['tweets'][i]+'\n')
             j = j+1
 def tech_tweets():
-    st.header('Tech tweets')
+    disp_col5.header('Tech tweets')
     j = 1
     for i in range(0, ak_df.shape[0]):
         if(ak_df['catogery'][i] == 'tech'):
-            st.write(str(j)+')'+ak_df['tweets'][i]+'\n')
+            disp_col5.write(str(j)+')'+ak_df['tweets'][i]+'\n')
             j = j+1
 
 
 def postive_tweets():
-    st.header('postive tweets')
+    dis_col4.header('postive tweets')
     j = 1
     sortedDF = analysis_df.sort_values(by=['score'])
     for i in range(0, sortedDF.shape[0]):
         if(sortedDF['analysis'][i] == 'Positive'):
-            st.write(str(j)+')'+sortedDF['tweets'][i]+'\n')
+            dis_col4.write(str(j)+')'+sortedDF['tweets'][i]+'\n')
             j = j+1
 
 
 def negative_tweets():
-    st.header('Negative tweets')
+    dis_col4.header('Negative tweets')
     j = 1
     sortedDF = analysis_df.sort_values(by=['score'], ascending=False)
     for i in range(0, sortedDF.shape[0]):
         if(sortedDF['analysis'][i] == 'Negative'):
-            st.write(str(j)+')'+sortedDF['tweets'][i]+'\n')
+            dis_col4.write(str(j)+')'+sortedDF['tweets'][i]+'\n')
             j = j+1
 
 
 def neutral_tweets():
-    st.header('Neutral tweets')
+    dis_col4.header('Neutral tweets')
     j = 1
     sortedDF = analysis_df.sort_values(by=['score'], ascending=False)
     for i in range(0, sortedDF.shape[0]):
         if(sortedDF['analysis'][i] == 'Neutral'):
-            st.write(str(j)+')'+sortedDF['tweets'][i]+'\n')
+            dis_col4.write(str(j)+')'+sortedDF['tweets'][i]+'\n')
             j = j+1
 
 
@@ -249,15 +170,96 @@ def value_coun_graph():
     plt.ylabel('counts')
     analysis_df['analysis'].value_counts().plot(kind='bar')
     plt.show()
-    st.pyplot()
-
-
-def main():
-    import tweepy
-    creat()
-
-
-if __name__ == '__main__':
-    # cursor=tweepy.Cursor(api.user_timeline,id=user).items(10)
-    load_saved_artifacts()
-    main()
+    disp_col2.pyplot()
+load_saved_artifacts()
+authe()
+header =st.container()
+dataset=st.container()
+features = st.container()
+images = st.container()
+per= st.container()
+with header:
+    st.title('Welcome to Twitter Sentiment analysis')
+with dataset:
+    sel_col,disp_col =st.columns(2)
+    username = sel_col.text_input('Select username')
+    disp_col.subheader('Given Username:')
+    disp_col.write(username)
+    count = sel_col.number_input('no of tweets to extract',max_value=200)
+    disp_col.subheader('Selected no.of Tweets')
+    disp_col.write(count)
+    n=sel_col.slider('Want to see sapmple no of tweets?',max_value=20)
+    disp_col.subheader('No of Sample tweets showing')
+    disp_col.write(n)
+with features:
+    posts = api.user_timeline(screen_name=username,
+                              count=count, tweet_mode='extended')
+    df = pd.DataFrame([tweet.full_text for tweet in posts], columns=['tweets'])
+    if n>0:    
+        st.subheader('Sample tweets:')
+    i=1
+    for tweet in posts[0:n]:
+        st.write(str(i)+')' + tweet.full_text+'\n')
+        i = i+1
+    sel_col1,disp_col1 =st.columns(2)
+    if sel_col1.button('View Raw Dataset'):
+        disp_col1.write(df)
+    global scores_df
+    scores_df = df.copy()
+    scores_df['tweets'] = scores_df['tweets'].apply(clean)
+    # st.dataframe(df)
+    scores_df['score'] = scores_df['tweets'].apply(sentiment)
+    if sel_col1.button('Dataset wth scores'):
+        disp_col1.dataframe(scores_df)
+    global analysis_df
+    analysis_df = scores_df.copy()
+    # st.dataframe(df)
+    analysis_df['analysis'] = analysis_df['score'].apply(getanalysis)
+    if sel_col1.button('Dataset With Sentiment'):
+        disp_col1.dataframe(analysis_df)
+    ak_df = df.copy()
+    ak_df['catogery']=ak_df['tweets'].apply(catogery)
+    if st.button('Dataset with catogeries'):
+        st.dataframe(ak_df)
+with images:
+    st.header('Visuvalizations')
+    sel_col2,disp_col2 =st.columns(2)
+    if sel_col2.button('wordcloud image of most used words'):
+        disp_col2.subheader('Wordcloud image:')
+        wordcl()
+    if sel_col2.button('sentiment vs no.of tweets graph'):
+        value_coun_graph()
+with per:
+    dis_col3=st.columns(1)
+    sel_col4,sel_col5 = st.columns(2)
+    dis_col4,disp_col5=st.columns(2)
+    
+    menu1 = ['None', 'positive tweets', 'negative tweets', 'neutral tweets']
+    choice1 = sel_col4.selectbox('View positive, negative or neutral tweets', menu1)
+    if choice1 == 'positive tweets':
+        postive_tweets()
+    if choice1 == 'negative tweets':
+        negative_tweets()
+    if choice1 == 'neutral tweets':
+        neutral_tweets()
+    menu1 = ['None', 'Sports related', 'Business related', 'Entertainment related','Politics related','Tech related']
+    choice1 = sel_col5.selectbox('view different categories of Tweets', menu1)
+    if choice1 == 'Sports related':
+        sports_tweets()
+    if choice1 == 'Business related':
+        business_tweets()
+    if choice1 == 'Entertainment related':
+        entertainment_tweets()
+    if choice1 == 'Politics related':
+        politic_tweets()
+    if choice1 == 'Tech related':
+        tech_tweets()
+    menu = ['None', 'positive tweet percent',
+            'negative tweet percent', 'neutral tweet percent']
+    choice = st.selectbox('percent of different tweets based on sentiment', menu)
+    if choice == 'positive tweet percent':
+        postive_percent()
+    if choice == 'negative tweet percent':
+        negative_percent()
+    if choice == 'neutral tweet percent':
+        neutral_percent()
