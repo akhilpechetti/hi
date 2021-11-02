@@ -61,7 +61,7 @@ def creat():
         i = i+1
     # st.header('Dataset')
     if st.button('view dataset'):
-        st.dataframe(df)
+        st.dataframe(df,width=700, height=768)
     # st.dataframe(df)
     df['tweets'] = df['tweets'].apply(clean)
     # st.dataframe(df)
