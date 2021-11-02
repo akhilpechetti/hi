@@ -203,23 +203,23 @@ with features:
         i = i+1
     sel_col1,disp_col1 =st.columns(2)
     if sel_col1.button('View Raw Dataset'):
-        disp_col1.write(df)
+        st.write(df)
     global scores_df
     scores_df = df.copy()
     scores_df['tweets'] = scores_df['tweets'].apply(clean)
     # st.dataframe(df)
     scores_df['score'] = scores_df['tweets'].apply(sentiment)
-    if sel_col1.button('Dataset wth scores'):
-        disp_col1.dataframe(scores_df)
+    if disp_col1.button('Dataset wth scores'):
+        st.dataframe(scores_df)
     global analysis_df
     analysis_df = scores_df.copy()
     # st.dataframe(df)
     analysis_df['analysis'] = analysis_df['score'].apply(getanalysis)
     if sel_col1.button('Dataset With Sentiment'):
-        disp_col1.dataframe(analysis_df)
+        st.dataframe(analysis_df)
     ak_df = df.copy()
     ak_df['catogery']=ak_df['tweets'].apply(catogery)
-    if st.button('Dataset with catogeries'):
+    if disp_col1.button('Dataset with catogeries'):
         st.dataframe(ak_df)
 with images:
     st.header('Visuvalizations')
