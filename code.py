@@ -105,16 +105,16 @@ def creat():
     ak_df['catogery']=ak_df['tweets'].apply(catogery)
     if st.button('view different categories of Tweets in Dataset'):
         st.dataframe(ak_df)
-    menu1 = ['None', 'Sports related', 'Business related', 'Entertainment related','Politics related','Tech related']
+    menu1 = ['None', 'Sports related', 'Business related', 'Sci/Tech related','World related']
     choice1 = st.selectbox('view different categories of Tweets', menu1)
     if choice1 == 'Sports related':
         sports_tweets()
     if choice1 == 'Business related':
         business_tweets()
-    if choice1 == 'Entertainment related':
-        entertainment_tweets()
-    if choice1 == 'Politics related':
-        politic_tweets()
+    if choice1 == 'Sci/Tech related':
+        Sci_tweets()
+    if choice1 == 'World related':
+        World_tweets()
     if choice1 == 'Tech related':
         tech_tweets()
 
@@ -158,37 +158,37 @@ def sports_tweets():
     st.header('sports tweets')
     j = 1
     for i in range(0, ak_df.shape[0]):
-        if(ak_df['catogery'][i] == 'sport'):
+        if(ak_df['catogery'][i] == 'Sports'):
             st.write(str(j)+')'+ak_df['tweets'][i]+'\n')
             j = j+1
 def business_tweets():
     st.header('business tweets')
     j = 1
     for i in range(0, ak_df.shape[0]):
-        if(ak_df['catogery'][i] == 'business'):
+        if(ak_df['catogery'][i] == 'Business'):
             st.write(str(j)+')'+ak_df['tweets'][i]+'\n')
             j = j+1
-def entertainment_tweets():
-    st.header('entertainment tweets')
+def Sci_tweets():
+    st.header('Sci/Tech tweets')
     j = 1
     for i in range(0, ak_df.shape[0]):
-        if(ak_df['catogery'][i] == 'entertainment'):
+        if(ak_df['catogery'][i] == 'Sci/tech'):
             st.write(str(j)+')'+ak_df['tweets'][i]+'\n')
             j = j+1
-def politic_tweets():
-    st.header('political tweets')
+def Word_tweets():
+    st.header('world tweets')
     j = 1
     for i in range(0, ak_df.shape[0]):
-        if(ak_df['catogery'][i] == 'politics'):
+        if(ak_df['catogery'][i] == 'World'):
             st.write(str(j)+')'+ak_df['tweets'][i]+'\n')
             j = j+1
-def tech_tweets():
+'''def tech_tweets():
     st.header('Tech tweets')
     j = 1
     for i in range(0, ak_df.shape[0]):
         if(ak_df['catogery'][i] == 'tech'):
             st.write(str(j)+')'+ak_df['tweets'][i]+'\n')
-            j = j+1
+            j = j+1'''
 
 
 def postive_tweets():
