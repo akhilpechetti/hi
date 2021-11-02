@@ -21,7 +21,7 @@ def load_saved_artifacts():
     global __model
     __model=None
     if __model is None:
-        with open('classification.joblib', 'rb') as f:
+        with open('classification123.joblib', 'rb') as f:
             __model = joblib.load(f)
     #print("loading saved artifacts...done")
 
